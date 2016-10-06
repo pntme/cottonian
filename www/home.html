@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" /> 
+    <meta http-equiv="Content-Security-Policy" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/custome.css" />
+     <link rel="stylesheet" href="css/font.css">
+    <title>Cottonian</title>
+</head>
+ <script src="js/webfont.js"></script>
+      <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+$.ajax({
+	url:"http://truecvs.com/cottonian/fetch.php",
+	data:"",
+	dataType:"json",
+	success: function(data)
+	{
+		var fullname;
+		for(var i in  data)
+		{
+		var id=data[0];
+		var email=localStorage.email;
+		if(data[i][3]==email)
+		{
+			fullname=data[i][2]
+		}
+		}
+		$('#output').append("Welcome "+fullname);
+	}
+
+	});
+});
+</script>
+<body>
+    <div class="container-fluid">
+         <div class="row text-center">
+         	<p class="header-space">
+                <span  class="arrow-top-right" id="on-off"><img src="img/menu-three-dots.png" alt="" /></span>
+              	<div class="add-new" id="hide-show"><span></span>
+                <ul class="list-group">
+                <a href="create_news.html"><li class="list-group-item items">Publish News</li></a>
+                <a href="create_job.html"><li class="list-group-item items">Create Jobs</li></a>
+                <a href="create_event.html"><li class="list-group-item items">Create Event</li></a>
+                 
+                </ul>
+                </div>
+                
+            </p>
+             
+           <h1  style="font-family: 'MTCORSVA';color:#fff;font-size:30px;margin-top:-80px;padding:20px;"><i>Cottonian</i></h1>
+         </div>
+         </div>
+         <div class=" container-fluid mdl-section1">
+         	<div class="col-lg-12 home-page">
+            <h4 id="output"></h4>
+            	<div class="row">
+                	<div class="container">
+                      <div class="hold-container">
+                    	<a href="news-feed.html" class=""><div class="home-box">
+                        	<img src="img/1.png" alt="" />
+                            <p>Feed</p>
+                        </div></a>
+                        <a href="events.html" class=""><div class="home-box">
+                        	<img src="img/3.png" alt="" />
+                            <p>Events</p>
+                        </div></a>
+                        <a href="jobs.html" class=""><div class="home-box1">
+                        	<img src="img/2.png" alt="" />
+                            <p>Jobs</p>
+                        </div></a>
+                        <!--<a href="find-friend.html" class=""><div class="home-box">
+                        	<img src="img/4.png" alt="" />
+                            <p>Twitter</p>
+                        </div></a>-->
+                       </div>
+                    </div>
+                   
+                </div>
+            </div>
+         </div>
+    
+    <script type="text/javascript" src="cordova.js"></script>
+     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <script type="text/javascript">
+		$(document).ready(function(e) {
+            $("#on-off").click(function(){
+				$("#hide-show").toggle();	
+			});
+        });
+	</script>
+</body>
+
+</html>

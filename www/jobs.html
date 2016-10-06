@@ -1,0 +1,154 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+	
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/custome.css" />
+    <title>Cottonian</title>
+</head>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+$.ajax({
+	url:"http://truecvs.com/cottonian/jobs.php",
+	data:"",
+	dataType:"json",
+	success: function(data)
+	{
+      if(data == 0){
+        alert("Match not found");
+      }else{
+		for(var i in  data)
+		{
+		var data1=data[i];	
+		var id=data1[4];
+		var title=data1[0];
+		var description=data1[2];
+		var datet=data1[3]
+	$('#output').append("<tr><td><img src='img/profile.jpg' alt='' /></td><td><b>"+title+"</b><br/>"+datet+"<br/>"+description+"</td></tr>").append("<hr />");
+		}
+	}
+}
+	});
+});
+
+
+</script>
+<body>
+    <div class="container-fluid">
+         <div class="row text-center">
+         	<p class="header-space-bar">
+            	<a href="home.html" class="arrow-top-left"><img src="img/back.png" alt="" /></a>
+                <span  class="arrow-top-right" id="on-off"><img src="img/menu-three-dots.png" alt="" /></span>
+                <div class="add-new" id="hide-show"><span></span>
+                <ul class="list-group">
+                   <a href="create_news.html"><li class="list-group-item items">Publish News</li></a>
+                <a href="create_job.html"><li class="list-group-item items">Create Jobs</li></a>
+                <a href="create_event.html"><li class="list-group-item items">Create Event</li></a>
+                 
+                </ul>
+                </div>
+            </p>
+            <figure class="profile-dp-bar1"><span class="Jobs">Jobs Available</span></figure>
+         </div>
+         </div>
+          <div class="container-fluid mdl-section-newsfeed">
+         	<div class="col-lg-12">
+            	<div class="row">
+                	<div class="container text-left">
+                     <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" placeholder="SEARCH" id="SearchTextbox"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button" id="SearchButton">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+
+
+<script type="text/javascript">
+            $( "#SearchButton" ).click(function() {
+ if($("#SearchTextbox").val()){
+  $.ajax({
+    url:"http://truecvs.com/cottonian/search.php?keyword="+$("#SearchTextbox").val(),
+    data:"",
+    dataType:"json",
+    success: function(data)
+    {
+        if(data == 0){
+            alert("Data not found");
+        }else{
+       $("#output tr").remove();
+       $("#output hr").remove();
+        for(var i in  data)
+        {
+
+        var data1=data[i]; 
+        var id=data1.id;
+        var title=data1.title;
+        var description=data1.description;
+        var datet=data1.user;
+    $('#output').append("<tr><td><img src='img/profile.jpg' alt='' /></td><td><b>"+title+"</b><br/>"+datet+"<br/>"+description+"</td></tr>");
+        }
+    }
+}
+});
+}   
+});
+
+</script>
+
+
+                    	<div class="row data-container">
+                        	<table class="table" id="output">                              
+                            </table>
+                    	</div>
+                	</div>
+                </div>
+            </div>
+         </div>
+         <div class="container-fluid">
+         	<div class="container" >
+            	<div class="row bottom-menu">
+                	<a href="news-feed.html"><div class="col-xs-4">
+                    		<img src="img/1_5.png" alt="" />
+                        </div>
+                     </a>
+                    <a href="jobs.html"><div class="col-xs-4">
+                    	<div class="arrow-up1"></div>
+                    		<img src="img/1_2.png" alt="" />
+                        </div></a>
+                    <a href="events.html"><div class="col-xs-4"><img src="img/1_3.png" alt="" /></div></a>
+                    <!--<a href="find-friend.html"><div class="col-xs-3"><img src="img/1_4.png" alt="" /></div></a>-->
+                </div>
+            </div>
+         </div>
+    
+    <script type="text/javascript" src="cordova.js"></script>
+     <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+        <script type="text/javascript">
+		$(document).ready(function(e) {
+            $("#on-off").click(function(){
+				$("#hide-show").toggle();	
+			});
+        });
+	</script>
+</body>
+
+</html>x
